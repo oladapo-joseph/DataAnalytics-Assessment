@@ -12,7 +12,7 @@ WITH savings_inactive AS (
         DATEDIFF(CURDATE(), MAX(transaction_date)) AS inactivity_days
     FROM savings_savingsaccount
     WHERE amount != 0
-    GROUP BY plan_id, owner_id
+    GROUP BY owner_id
     HAVING inactivity_days > 365
 
     UNION ALL
@@ -26,7 +26,7 @@ WITH savings_inactive AS (
         DATEDIFF(CURDATE(), MAX(start_date)) AS inactivity_days
     FROM plans_plan
     WHERE amount != 0
-    GROUP BY plan_type_id, owner_id
+    GROUP BY  owner_id
     HAVING inactivity_days > 365
 )
 
